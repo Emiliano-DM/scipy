@@ -11,8 +11,10 @@
     #define ARNAUD_cplx(real, imag) ((_Dcomplex){real, imag})
     #define ARNAUD_cplxf(real, imag) ((_Fcomplex){real, imag})
 #else
-    #define ARNAUD_cplx(real, imag) ((real) + (imag)*I)
-    #define ARNAUD_cplxf(real, imag) ((real) + (imag)*I)
+    // Use _Complex_I directly to avoid NumPy breaking I macro
+    #include <complex.h>
+    #define ARNAUD_cplx(real, imag) ((real) + (imag)*_Complex_I)
+    #define ARNAUD_cplxf(real, imag) ((real) + (imag)*_Complex_I)
 #endif
 
 static PyObject* arpack_error_obj;

@@ -9,12 +9,12 @@
     #define CPLX_Z(real, imag) (_Cbuild(real, imag))
     #define CPLX_C(real, imag) (_FCbuild(real, imag))
 #else
-    // C99-compliant compilers
+    // C99-compliant compilers using NumPy-proof approach
     #include <complex.h>
     #define EXPM_Z double complex
     #define EXPM_C float complex
-    #define CPLX_Z(real, imag) (real + imag*I)
-    #define CPLX_C(real, imag) (real + imag*I)
+    #define CPLX_Z(real, imag) (real + imag*_Complex_I)
+    #define CPLX_C(real, imag) (real + imag*_Complex_I)
 #endif
 
 
